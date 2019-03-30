@@ -1,0 +1,92 @@
+{% extends "Home/base.html" %}
+{% load staticfiles %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/registration/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="login-block">
+    <div class="container">
+	<div class="row">
+		<div class="col-md-4 login-sec">
+		    <h2 class="text-center">Login</h2>
+		    <form class="login-form" method="post">
+          {% csrf_token %}
+          
+          <div class="form-group">
+            {{login_form.username}}
+
+          </div>
+          <div class="form-group">
+            {{login_form.password}}
+          </div>
+
+
+            <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input">
+              <small>Remember Me</small>
+            </label>
+          </div>
+          <div>
+          <input type="submit" class="btn btn-login login-button"  value="Login"/>
+          </div>
+        </form>
+        <div></div>
+		    </div>
+		      <div class="col-md-8 banner-sec">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                 <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  </ol>
+            <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="{% static 'images/login-page-spices.jpg' %}" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                    <h2>Bit of Spices</h2>
+                    <p></p>
+                </div>
+          </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="{% static 'images/login-page-spices2.jpg' %}" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                    <h2>Properly Crafted</h2>
+                    <p></p>
+                </div>
+            </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="{% static 'images/login-page-spices3.jpg' %}" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                    <h2>Authentic Food</h2>
+                    <p></p>
+                </div>
+            </div>
+          </div>
+      </div>
+
+		</div>
+	</div>
+              <!-- <div class="form-group">
+                  <select class="form-control">
+                      <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
+                      <option>What is your Birthdate?</option>
+                      <option>What is Your old Phone Number</option>
+                      <option>What is your Pet Name?</option>
+                  </select>
+              </div> -->
+              <!-- <div class="form-group">
+                  <input type="text" class="form-control" placeholder="`Answer *" value="" />
+              </div> -->
+
+
+  </div>
+  </section>
+
+{% endblock %}

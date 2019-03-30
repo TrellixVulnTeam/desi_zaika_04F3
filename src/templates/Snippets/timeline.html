@@ -1,0 +1,126 @@
+{% load staticfiles %}
+<div class="container-fluid mt-5 mb-5">
+	<div class="row">
+		{% if cart.products.exists %}
+			{% if not order.delivery_address %}
+				{% include 'Snippets/cart.html' %}
+			{% endif %}
+		{% else %}
+			<div class="mb-3 text-center col-md-12">
+				<h4 class="mt-1">Your Cart is Empty</h4>
+			</div>
+		{% endif %}
+
+		{% if order.delivery_address %}
+		<div style="width:100%" class="align-items-center justify-align-center">
+			<div class="col-md-7 offset-md-3 mb-4">
+
+				<h3 class="text-center">Your order id is {{order.order_id}}</h3>
+
+				<div class="jumbotron">
+					<table class="table table-borderless">
+					  <tbody>
+					    <tr>
+					      <th scope="row">Delivery Address&nbsp;:</th>
+					      <td>{{order.delivery_address.address_line_1}},{{order.delivery_address.address_line_2}},{{order.delivery_address.state}},{{order.delivery_address.city}},{{order.delivery_address.postal_code}}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Cart Items&nbsp;:</th>
+					      <td>{% for product in cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Cart Total&nbsp;:</th>
+					      <td colspan="2">{{cart.total}}</td>
+					    </tr>
+							<tr>
+					      <th scope="row">Delivery Charges&nbsp;:</th>
+								{% if order.delivery_charges == 0  %}
+								<td colspan="2">Free</td>
+								{% else %}
+					      <td colspan="2">{{order.delivery_charges}}</td>
+								{% endif %}
+					    </tr>
+							<tr>
+					      <th scope="row">Order Total<small>(inclusive of 10% Taxes)</small>&nbsp;:</th>
+					      <td colspan="2">{{order.order_total}}</td>
+					    </tr>
+							<tr>
+								<th colspan="1"></th>
+								<td>
+									<form method="post" action="{% url 'Carts:cart_checkout' %}">
+										{% csrf_token %}
+									<button type="submit" name="proceed-to-payment" class="btn btn-block btn-warning text-light">Proceed To Payment</button>
+									</form>
+								</td>
+							</tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+			</div>
+		{% endif %}
+
+		<div class="col-md-4">
+			{% if not billing_profile %}
+				{% if cart.products.exists %}
+						<h4>Continue Shopping</h4>
+							<ul class="timeline">
+								<li>
+									<h4 class="mb-2">Fill out your details(Continue as a Guest)</h4>
+									{% url "registration:guest_register" as guest_register_url %}
+									{% include 'Snippets/guest-checkout-form.html' with form=guest_form next_url=request.build_absolute_uri action_url=guest_register_url%}
+								</li>
+							</ul>
+				{% endif %}
+			{% else %}
+					{% if cart.products.exists %}
+					{% if not order.delivery_address %}
+							<div class="col-md">
+								<ul class="timeline mt-5">
+									<li>
+									<h4 class="mb-2">Checkout</h4>
+									<hr/>
+									{% url "Addresses:checkout_address_view" as checkout_address_url %}
+									{% include 'Snippets/address-form.html' with form=address_form next_url=request.build_absolute_uri action_url=checkout_address_url %}
+									</li>
+								</ul>
+						</div>
+						{% endif %}
+					{% endif %}
+			{% endif %}
+		</div>
+			{% if cart.products.exists %}
+				{% if address_qs.exists  %}
+				{% if request.user.is_authenticated %}
+				{% if not order.delivery_address %}
+					<div class="col-md">
+						<ul class="timeline mt-5">
+							<li>
+							<h4 class="mb-2">Choose an Address</h4>
+							<hr/>
+							{% url "Addresses:checkout_address_reuse_view" as checkout_address_reuse_url %}
+							{% include 'Snippets/choose-address.html' with address_qs=address_qs next_url=request.build_absolute_uri action_url=checkout_address_reuse_url %}
+							</li>
+						</ul>
+					</div>
+					{% endif %}
+					{% endif %}
+				{% endif %}
+			{% endif %}
+
+			{% if not billing_profile %}
+				{% if cart.products.exists %}
+					<div class="col-md-4">
+						<ul class="timeline mt-5">
+							<li>
+							<h4 class="mb-2 ml-1">Signin(if you already have an existing account)</h4>
+							<div class="checkout-signin-button align-items-center">
+								{% include 'Snippets/checkout-signin.html' with form=login_form next_url=request.build_absolute_uri %}
+							</div>
+							</li>
+						</ul>
+					</div>
+					{% endif %}
+				{% endif %}
+		</div>
+	</div>

@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/Products/product.css' %}">
+{% endblock %}
+
+{% for product in product_list %}
+<div class="product">
+  <div class="imgbox">
+    <img src="{% static 'images/product-images/product-image1.jpg' %}" alt="image missing">
+  </div>
+  <div class="details">
+    <h2>{{product.title}}</h2>
+    <h4 class="price">
+      {{product.price}}
+    </h4>
+    <p class="description">{{product.description}}</p>
+    <form class="add-product" action="{% url 'Carts:cart_update' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="product_id" value="{{product.id}}">
+      <span class="buttonArea">
+      {% if product in cart.products.all %}
+        <button type="submit" class="add-to-cart-button">Remove</button>
+      {% else %}
+        <button  type="submit" class="add-to-cart-button">Add To Cart</button>
+      {% endif %}
+      </span>
+    </form>
+  </div>
+</div>
+{% endfor %}

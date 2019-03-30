@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/solid.css" integrity="sha384-uKQOWcYZKOuKmpYpvT0xCFAs/wE157X5Ua3H5onoRAOCNkJAMX/6QF0iXGGQV9cP" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/fontawesome.css" integrity="sha384-HU5rcgG/yUrsDGWsVACclYdzdCcn5yU8V/3V84zSrPDHwZEdjykadlgI6RHrxGrJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/Home/landing-page.css' %}">
+  </head>
+  <body>
+    <section class="landing-page">
+
+      <!-- Heading -->
+      <div class="welcome_screen">
+        <h1 class="heading">
+          Desi Zaika
+        </h1>
+        <h3 class="sub-heading">
+          the flavour of indian rasoi
+        </h3>
+
+        <div class="explore-our-home">
+          <a class="go-to-home" href="{% url 'Home:home_page' %}">
+            <div class="arrow">
+              <i class="fas fa-arrow-right fa-2x"></i>
+              <span class="explore-our-home-text">Visit Our Website</span>
+            </div>
+          </a>
+        </div>
+        <div class="explore-our-menu">
+          <a class="go-to-menu" href="#">
+            <div class="arrow">
+              <i class="fas fa-arrow-right fa-2x"></i>
+              <span class="explore-our-menu-text">Explore Our Menu</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- end Heading -->
+    </section>
+
+
+    <!-- Script Tags -->
+    <script src="{% static 'imports/anime.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Home/landing-page.js' %}"></script>
+  </body>
+</html>

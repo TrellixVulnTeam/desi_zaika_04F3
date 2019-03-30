@@ -1,0 +1,44 @@
+<form class="needs-validation" method="post" action="{% if action_url %}{{ action_url }}{% endif %}" novalidate>
+  {% csrf_token %}
+  {% if next_url %}
+  <input type="hidden" name="next" value="{{next_url}}">
+  {% endif %}
+    <div class="col-md-12 mb-2">
+      <label for="address">Address</label>
+      {{form.address_line_1}}
+      <div class="invalid-feedback">
+        Please enter your address.
+      </div>
+    </div>
+    <div class="col-md-12 mb-2">
+      <label for="address-2">Landmark</label>
+      {{form.address_line_2}}
+      <div class="invalid-feedback">
+        Please enter your address.
+      </div>
+    </div>
+    <div class="col-md-12 mb-2">
+      <label for="address-2">Pincode</label>
+      {{form.postal_code}}
+      <div class="invalid-feedback">
+        Please enter your pincode.
+      </div>
+    </div>
+    <div class="col-md-12 mb-2">
+      <label for="address-2">State</label>
+      {{form.state}}
+      <div class="invalid-feedback">
+        Please enter your state.
+      </div>
+    </div>
+    <div class="col-md-12 mb-2">
+      <label for="address-2">City</label>
+      {{form.city}}
+      <div class="invalid-feedback">
+        Please enter your city.
+      </div>
+    </div>
+    <div class="col-md-12 mb-2">
+        <button class="btn btn-block btn-secondary" type="submit">Save and Continue</button>
+    </div>
+</form>

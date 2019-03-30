@@ -1,0 +1,15 @@
+{% extends 'Home/base.html' %}
+{% load staticfiles %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/Carts/timeline.css' %}">
+{% endblock %}
+
+{% block content %}
+{{order.order_id}} -- {{order.cart}}
+  {% include 'Snippets/timeline.html' %}
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

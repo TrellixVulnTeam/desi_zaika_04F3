@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/Home/main_page.css' %}">
+{% endblock %}
+
+<div class="container-fluid nav-pattern">
+  <nav class="navbar">
+    <a class="navbar-brand" href="{% url 'Home:home_page' %}">
+      <img class="logo_image" src="{% static 'images/desizaikalogo.png' %}" width="240" height="100" alt="">
+    </a>
+    {% include 'Snippets/nav.html' %}
+  </nav>
+</div>

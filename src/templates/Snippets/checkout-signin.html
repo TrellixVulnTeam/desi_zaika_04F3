@@ -1,0 +1,16 @@
+<form action="{% url 'registration:login' %}" method="post" class="ml-3">
+  {% csrf_token %}
+  {% if next_url %}
+    <input type="hidden" name="next" value="{{next_url}}">
+  {% endif %}
+  <div class="mb-2">
+    <label>Username</label>
+    {{form.username}}
+  </div>
+  <div class="mb-2">
+    <label>Password</label>
+    {{form.password}}
+  </div>
+
+  <button class="btn btn-block" type="submit" name="button">Signin</button>
+</form>

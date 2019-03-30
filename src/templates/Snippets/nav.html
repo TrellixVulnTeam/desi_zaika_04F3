@@ -1,0 +1,13 @@
+  <nav class="nav justify-content-end">
+    <a class="nav-link" href="{% url 'Products:products' %}" style="color:#800000">Menu</a>
+    <a class="nav-link" href="#" style="color:#800000">Events</a>
+
+    <a class="nav-link cart" href="{% url 'Carts:cart_home' %}" style="color:#800000">{% if request.session.cart_product_count %}<span class="products-in-the-cart">{{request.session.cart_product_count}}</span>{% endif %}Cart</a>
+
+    {% if user.is_authenticated %}
+    <a name="Signin" class="nav-link" href="{% url 'registration:logout' %}" style="color:#800000">Logout</a>
+    {% else %}
+    <a name="Signin" class="nav-link" href="{% url 'registration:login' %}" style="color:#800000">Signin</a>
+    <a name="Register" class="nav-link" href="{% url 'registration:signup' %}" style="color:#800000">Register</a>
+    {% endif %}
+  </nav>

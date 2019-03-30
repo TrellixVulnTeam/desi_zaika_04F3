@@ -1,0 +1,23 @@
+<form class="needs-validation" method="post" action="{% if action_url %}{{ action_url }}{% else %}{% url 'registration:login' %}{% endif %}" novalidate>
+  {% csrf_token %}
+  {% if next_url %}
+  <input type="hidden" name="next" value="{{next_url}}">
+  {% endif %}
+  <div class="col-md-12  mb-2">
+    <label for="FullName">Full Name</label>
+    {{form.name}}
+    <div class="invalid-feedback">
+      Valid name is required.
+    </div>
+  </div>
+  <div class="col-md-12 mb-2">
+    <label for="email">Email</label>
+    {{form.email}}
+    <div class="invalid-feedback">
+      Please enter a valid email address.
+    </div>
+  </div>
+  <div class="col-md-12 mb-2">
+    <button class="btn btn-block" type="submit" name="Submit">Submit</button>
+  </div>
+</form>
